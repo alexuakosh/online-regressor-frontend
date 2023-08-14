@@ -1,0 +1,23 @@
+.header {
+    height: 80px;
+    background-color: #00008b;
+}
+
+.logo {
+    padding: 10px;
+    color: white;
+}
+
+.nameWrapper {
+    font-size: 26px;
+}
+
+.wrapper {
+    width: 180px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.textWrapper {
+    font-size: 18px;
+}
