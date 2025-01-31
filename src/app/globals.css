@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* <global vars */
+:root {
+  font-size: 100%;
+  --default-width: 80%;
+  --trans-time: 150ms;
+  --main-color: black;
+  --grad-color: black;
+  --mid-color: black;
+  --secondary-font-color: rgb(251, 60, 60);
+  ;
+  --header-nav-bot: 0.5rem;
+  --main-font-color: #ffffff;
+}
+
+@layer components {
+  .root-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    margin: 0 auto;
+    flex-grow: 1;
+    min-height: 100vh;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .test-r {
+    border: 2px solid rgb(251, 60, 60);
+  }
+
+  .test-g {
+    border: 2px solid lime;
+  }
+
+  .test-b {
+    border: 2px solid dodgerblue;
+  }
+
+  .form {
+    display: block;
+    width: 400px;
+    margin: 50px auto 0 auto;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid lightgray;
+    border-radius: 2px;
+    box-shadow: 10px 5px 5px gray;
+  }
+
+  .input {
+    width: 300px;
+    margin: 20px;
+    border-width: 2px;
+  }
+
+  input[type="file"]::file-selector-button {
+    background-color:black;
+    color: white;
+    border-width: 0px;
+  }
+
+  .button {
+    width: 100px;
+    background-color: rgb(251, 60, 60);
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 30px;
+    box-shadow: 5px 3px 3px gray;
+  }
+}
+
+@layer utilities {
+  .centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .abs-centered-x {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

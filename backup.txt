@@ -1,0 +1,127 @@
+export default function NavigationMenu({
+  options,
+  addClassName,
+}: {
+  options: TypeOfInput[];
+  addClassName?: string;
+}) {
+  function setOptions(input: TypeOfInput, i = 0) {
+    if (typeof input === "string") {
+      return (
+        <li
+          key={input + i.toString()}
+          className={"option [&:hover>span]:text-[--secondary-font-color]"}
+        >
+          <span className="option__text ">
+            <Link href={`/${input}`}>{input}</Link>
+          </span>
+        </li>
+      );
+    } else {
+      return (
+        <li
+          className={
+            "option group/option [&:hover>span]:text-[--secondary-font-color] [&:hover>ul]:block [&:hover>ul]:pr-2 [&:hover>ul]:top-0 [&:hover>ul]:right-full"
+          }
+        >
+          <span className="option__text ">{input[0]}</span>
+          <ul
+            className={
+              "sub-level-menu [&>li>span]:text-[--main-font-color] hidden absolute [&>li]:text-center  border"
+            }
+          >
+            {input[1].map(setOptions)}
+          </ul>
+        </li>
+      );
+    }
+  }
+
+  const menu = (
+    <nav
+      className={twMerge(
+        `border border-black header__nav absolute top-full right-1/2 translate-x-1/2  [&_span]:text-lg [&_span]:text-white [&_span]:font-bold [&_span]:tracking-wider whitespace-nowrap hidden lg:block lg:right-0 lg:translate-x-0 lg:relative self-end`,
+        addClassName
+      )}
+    >
+      <ul
+        className={
+          "top-level-menu [&>li>span]:text-xl column lg:row lg:gap-8 li:cursor-pointer [&_li]:relative [&_li]:cursor-pointer [&>li::after]:content-[''] [&>li::after]:block [&>li::after]:h-[2px] [&>li::after]:absolute [&>li::after]:w-0 [&>li::after]:bottom-[-0.5rem] [&>li::after]:bg-[--secondary-font-color] [&>li::after]:transition-width [&>li:hover::after]:w-full [&>li:hover>ul]:pt-3 [&>li:hover>ul]:mt-3 [&>li:hover>ul]:pr-0 [&>li:hover>ul]:top-1/2 [&>li:hover>ul]:right-1/2 [&>li:hover>ul]:translate-x-1/2  [&>li:last-child:hover>ul]:right-full [&>li:last-child:hover>ul>li]:text-right [&>li:last-child:hover>ul>li]:2xl:text-center  [&>li:last-child:hover>ul]:2xl:right-1/2"
+        }
+// !===========================================================
+
+      >
+        {" "}
+        {<Option optionType="btn"/>}
+        {options.map(setOptions)}
+      </ul>
+    </nav>
+  );
+  return menu;
+}
+
+
+// ==================================================== VAR 2 =============================================================
+export default function NavigationMenu({
+  options,
+  addClassName,
+}: {
+  options: TypeOfInput[];
+  addClassName?: string;
+}) {
+  function setOptions(input: TypeOfInput, i = 0) {
+    if (typeof input === "string") {
+      return (
+        <Option
+          key={input + i.toString()}
+          addClassName={"option [&:hover>.option-text]:text-[--secondary-font-color]"}
+          children={
+            <span className="option-text">
+              <Link href={`/${input}`}>{input}</Link>
+            </span>
+          }
+        />
+      );
+      // !========================== EDIT =================================
+    } else {
+      return (
+        <Option
+        optionType="btn"
+          addClassName={
+            "option group/option [&:hover>.option-text]:text-[--secondary-font-color] [&:hover>span>ul]:block"
+          }
+          text={input[0]}
+          children={<ul
+            className={
+              "sub-level-menu lg:hidden [&>li>.option-text]:text-[--main-font-color] lg:absolute [&>li]:text-center border border-black"
+            }
+          >
+            {input[1].map(setOptions)}
+          </ul>}
+        />
+          
+          
+        
+      );
+    }
+  }
+
+  const menu = (
+    <nav
+      className={twMerge(
+        `border border-black header__nav [&_.option-text:hover]:cursor-pointer absolute top-full right-1/2 translate-x-1/2 [&_.option-text]:  [&_.option-text]:text-lg [&_.option-text]:text-[--main-font-color] [&_.option-text]:font-bold [&_.option-text]:tracking-wider whitespace-nowrap hidden lg:block lg:right-0 lg:translate-x-0 lg:relative self-end`,
+        addClassName
+      )}
+    >
+      <ul
+        className={
+          "top-level-menu [&_.option-text]:centered [&>li>.option-text]:text-xl lg:[&>li>.option-text]:text-white column lg:row lg:gap-8 [&_li]:relative [&>li::after]:content-[''] [&>li::after]:block [&>li::after]:h-[2px] [&>li::after]:absolute [&>li::after]:w-0 [&>li::after]:bottom-[-0.5rem] [&>li::after]:bg-[--secondary-font-color] [&>li::after]:transition-width [&>li:hover::after]:w-full lg:[&>li:hover>span>ul]:pt-3 lg:[&>li:hover>span>ul]:right-1/2 lg:[&>li:hover>span>ul]:translate-x-1/2  lg:[&>li:last-child:hover>span>ul]:right-full lg:[&>li:last-child:hover>span>ul>li]:text-right [&>li:last-child:hover>span>ul>li]:2xl:text-center  [&>li:last-child:hover>span>ul]:2xl:right-1/2"
+        }
+        // !===========================================================
+      >
+        {options.map(setOptions)}
+      </ul>
+    </nav>
+  );
+  return menu;
+}
